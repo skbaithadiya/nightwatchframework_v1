@@ -1,6 +1,5 @@
-module.exports = {
-    '@tags': ['SauceDemoLogin'],
-    'Launch Test'(browser){
+module.exports = function(browser) {
+    this.navigateToLoginPage = function(){
         const launchUrl = 'https://www.saucedemo.com/';
         const loginPage = browser.page.LoginPageObjects();
         loginPage
@@ -8,12 +7,10 @@ module.exports = {
             .checkLoginPageLoaded()
         browser
             .saveScreenshot('screenshots/launchScreen.jpg')
-    },
-        
-    'Login Test'(browser){
+        return browser;
+    };
+    this.doLogin = function(tc_username, tc_password){
         const loginPage = browser.page.LoginPageObjects();
-        const tc_username = 'standard_user';
-        const tc_password = 'secret_sauce'
         loginPage
             .inputUsername(tc_username)
             .inputPassword(tc_password)
@@ -21,6 +18,8 @@ module.exports = {
             .checkWelcomePageText()
         browser
             .saveScreenshot('screenshots/WelcomeScreen.jpg')
-    }
-
+        browser
+        return browser;
+    };
+    return this;
 }
