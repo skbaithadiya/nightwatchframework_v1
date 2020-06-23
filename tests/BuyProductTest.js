@@ -35,7 +35,8 @@ module.exports = {
             .fillPersonalDetailAndContinue(yourInformationTitle, firstName, lastName, postalCode)
             .checkoutOverviewAndFinish(overviewPageTitle)
             .verifySuccess(message1, message2)
-            .pause(1000)
+            .saveScreenshot('screenshots/SuccessfulE2E.jpg')
+            .pause(2000)
             .end()
             
     }

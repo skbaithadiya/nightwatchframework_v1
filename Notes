@@ -5,3 +5,16 @@ npm install chromedriver --save-dev
 npm install geckodriver --save-dev
 npm test
 npm install log4js --save-dev
+
+# merging local branch to master
+git checkout -b refactor #create new branch
+# add commit
+git push origin refactor #push local branch to origin
+git checkout master
+git pull #pull change
+git pull origin refactor #pull changes from origin to master
+git push origin master #push updated code of master to origin
+git log #check commit was added to master
+
+# running cross-browser/parallel test execution (including generating html reports)
+node nightwatch.js --tag SauceDemoBuyProduct --reporter html-reporter.js -e chrome, firefox

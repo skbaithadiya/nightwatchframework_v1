@@ -51,7 +51,7 @@ module.exports = {
         browserName : 'firefox',
         alwaysMatch: {
           // Enable this if you encounter unexpected SSL certificate errors in Firefox
-          // acceptInsecureCerts: true,
+          acceptInsecureCerts: true,
           'moz:firefoxOptions': {
             args: [
               // '-headless',

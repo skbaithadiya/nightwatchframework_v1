@@ -1,5 +1,7 @@
+var basepage = require('../commonPage/BasePage');
 var logger = require('../utils/logger');
 var log = logger.logger();
+
 module.exports = {
     url: 'https://www.saucedemo.com/inventory.html',
     elements: {
@@ -26,6 +28,7 @@ module.exports = {
             log.info(`clicking on Product: ${productName}`);
             return this
                 .useXpath()
+                .waitForElementPresent(element, 3000)
                 .moveToElement(element, 1, 1)
                 .click(element);
         },
@@ -36,6 +39,7 @@ module.exports = {
         addProductToCart(addCartButtonName, RemoveCartButtonName){
             log.info(`Clicking on ADD TO CART Button`);
             return this
+                .waitForElementPresent('@addToCartButton', 3000)
                 .moveToElement('@addToCartButton', 1, 1)
                 .assert.containsText('@addToCartButton', addCartButtonName, 'ADD TO CART button is available!')
                 .click('@addToCartButton')
@@ -44,6 +48,7 @@ module.exports = {
         GoToCart(cartPageHeaderName){
             log.info(`Navigating to Cart`);
             return this
+                .waitForElementPresent('@goToCartButton', 3000)
                 .moveToElement('@goToCartButton', 1, 1)
                 .click('@goToCartButton')
                 .assert.containsText('@subPageHeader', cartPageHeaderName, 'At Cart Page')
@@ -52,6 +57,7 @@ module.exports = {
             log.info(`Verifying Checkout button. Clicking on Checkout Button`);
             return this
                 .assert.containsText('@checkoutButton', checkoutButtonName, 'Checkout button is present!')
+                .waitForElementPresent('@checkoutButton', 3000)
                 .moveToElement('@checkoutButton', 1, 1)
                 .click('@checkoutButton')
         },

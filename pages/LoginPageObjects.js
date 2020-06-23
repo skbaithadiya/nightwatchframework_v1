@@ -15,16 +15,14 @@ module.exports = {
     commands: [{
         inputUsername(value){
             log.info(`Inputting Username: ${value}`);
-            var user = basepage(this).inputText('@userName', value)
-            return user
+            return user = basepage(this).inputText('@userName', value)
         },
         inputPassword(value){
             log.info(`Inputting Password: ${value}`);
             return basepage(this).inputText('@password', value)
         },
         clickLoginButton(){
-            log.info(`Clicking on Login Button`);
-            return this.click('@loginButton')
+            return basepage(this).clickButton('@loginButton')
         },
         checkLoginPageLoaded(){
             log.info(`Checking Login Page is Loaded`);

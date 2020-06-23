@@ -4,7 +4,9 @@ var log = logger.logger();
 module.exports = function(browser) {
   this.inputText = function(selector, value){
     try{
-      browser.setValue(selector, value);
+      browser
+        .waitForElementVisible(selector, 5000)
+        .setValue(selector, value);
       log.info(`Setting Value: ${value} for locator: ${selector}`)
       return browser;
     } catch(e){
@@ -12,5 +14,18 @@ module.exports = function(browser) {
       return browser;
     } 
   };
+
+  this.clickButton = function(selector) {
+    try{
+      log.info(`Clicking on locator: ${selector}`);
+      browser
+        .waitForElementVisible(selector, 5000)
+        .click(selector)
+      return browser;
+    } catch(e){
+        log.error(`Exception occurred during inputText(): ${e}`)
+        return browser;
+    }
+  }
   return this;
 }

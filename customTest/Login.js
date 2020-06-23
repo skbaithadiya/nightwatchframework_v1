@@ -7,6 +7,7 @@ module.exports = function(browser) {
         const loginPage = browser.page.LoginPageObjects();
         log.info(`Navigating to URL: ${launchUrl}`);
         loginPage
+            .maximizeWindow()
             .navigate(launchUrl)
             .checkLoginPageLoaded()
         browser
