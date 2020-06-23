@@ -1,4 +1,6 @@
-var login = require('../customCommands/Login');
+var login = require('../customTest/Login');
+var logger = require('../utils/logger');
+var log = logger.logger();
 
 module.exports = {
     '@tags': ['SauceDemoBuyProduct'],
@@ -25,7 +27,7 @@ module.exports = {
         const overviewPageTitle = 'Checkout: Overview';
         const buyproduct = browser.page.BuyProductPageObjects();
         buyproduct
-            .clickProductByName(backpackName)
+            .findAndClickProductByName(backpackName)
             .checkProductTitle(backpackName)
             .addProductToCart(addCartButtonName, RemoveCartButtonName)
             .GoToCart(cartPageHeaderName)
@@ -33,7 +35,8 @@ module.exports = {
             .fillPersonalDetailAndContinue(yourInformationTitle, firstName, lastName, postalCode)
             .checkoutOverviewAndFinish(overviewPageTitle)
             .verifySuccess(message1, message2)
-            .pause(3000)
+            .pause(1000)
+            .end()
             
     }
 }

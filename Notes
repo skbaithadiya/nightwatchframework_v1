@@ -4,3 +4,4 @@ npm install nightwatch --save-dev
 npm install chromedriver --save-dev
 npm install geckodriver --save-dev
 npm test
+npm install log4js --save-dev

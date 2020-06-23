@@ -1,3 +1,5 @@
+var logger = require('../utils/logger');
+var log = logger.logger();
 module.exports = {
     '@tags': ['SauceDemoLogin'],
     'Launch Test'(browser){
@@ -21,6 +23,7 @@ module.exports = {
             .checkWelcomePageText()
         browser
             .saveScreenshot('screenshots/WelcomeScreen.jpg')
+            .end()
     }
 
 }

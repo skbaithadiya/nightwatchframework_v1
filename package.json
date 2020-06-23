@@ -7,11 +7,12 @@
   "devDependencies": {
     "chromedriver": "^83.0.0",
     "geckodriver": "^1.19.1",
+    "log4js": "^6.3.0",
     "nightwatch": "^1.3.6"
   },
   "scripts": {
     "debug": "node --inspect-brk node_modules/.bin/nightwatch.CMD",
-    "test": "nightwatch"
+    "test": "node nightwatch.js"
   },
   "keywords": [],
   "author": "",
