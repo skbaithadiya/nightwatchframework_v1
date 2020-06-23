@@ -1,7 +1,11 @@
+var logger = require('../utils/logger');
+var log = logger.logger();
+
 module.exports = function(browser) {
     this.navigateToLoginPage = function(){
         const launchUrl = 'https://www.saucedemo.com/';
         const loginPage = browser.page.LoginPageObjects();
+        log.info(`Navigating to URL: ${launchUrl}`);
         loginPage
             .navigate(launchUrl)
             .checkLoginPageLoaded()
