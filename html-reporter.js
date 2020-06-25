@@ -7,8 +7,9 @@ var log = logger.logger();
 module.exports = {
   write : function(results, options, done) {
 
-    var reportFilename = options.filename_prefix + (Math.floor(Date.now() / 1000)) + '.html';
+    // var reportFilename = options.filename_prefix + (Math.floor(Date.now() / 1000)) + '.html';
     // var reportFolder = options.output_folder // un-comment and it will generate reports into tests_output folder
+    var reportFilename = options.filename_prefix + Date.now() + '.html';
     var reportFolder = './reports';
     var reportFilePath = path.join(__dirname, reportFolder, reportFilename);
 

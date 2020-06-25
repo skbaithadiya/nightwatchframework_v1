@@ -26,5 +26,17 @@ module.exports = function(browser) {
         browser
         return browser;
     };
+    this.doLoginDataDriven = function(tc_username, tc_password){
+        const loginPage = browser.page.LoginPageObjects();
+        loginPage
+            .inputUsername(tc_username)
+            .inputPassword(tc_password)
+            .clickLoginButton()
+            // .checkWelcomePageText()
+        browser
+            .saveScreenshot('screenshots/WelcomeScreen.jpg')
+        browser
+        return browser;
+    };
     return this;
 }
