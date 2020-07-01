@@ -3,7 +3,7 @@ module.exports = {
         const log4js = require("log4js");
         log4js.configure({
             appenders: {
-                nightwatch: { type: "file", filename: "logs/test_execution.log" }
+                nightwatch: { type: "file", filename: `logs/test_execution.log` }
             },
             categories: { default: { appenders: ["nightwatch"], level: "info" } }
         });

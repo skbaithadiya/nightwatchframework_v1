@@ -12,23 +12,11 @@ var tc_password;
 var tc_id;
 var tc_result= 'Failed';
 
-// async function getLoginData(){
-//     // using single username/password
-//     tc_id = 'tc1';
-//     tc_username = await excel(excelFilePath).excelRead(sheetName, tc_id, 'username');
-//     tc_password = await excel(excelFilePath).excelRead(sheetName, tc_id, 'password');
-
-//     // // example of data driven
-//     // loginData['username'] = await excel(excelFilePath).excelReadEntireColumn(sheetName, 'username');
-//     // loginData['password'] = await excel(excelFilePath).excelReadEntireColumn(sheetName, 'password');
-//     // console.log(loginData);
-// }
-
 module.exports = {
     '@tags': ['SauceDemoLogin'],
 
     before: function(browser){
-        // getLoginData();
+        
     },
 
     after: function(browser){

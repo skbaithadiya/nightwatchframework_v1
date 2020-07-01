@@ -1,15 +1,32 @@
 var login = require('../customTest/Login');
 var logger = require('../utils/logger');
 var excel = require('../utils/excelUtils')
-var log = logger.logger();
 
+
+var logfilename = 'buyProductTest.log';
+var log = logger.logger(logfilename);
 var testDataPath = process.cwd() + '\\testData';
-var excelFilePath = testDataPath + '\\loginData.xlsx';
-var sheetName = 'loginTC';
+var excelFilePath = testDataPath + '\\buyProductData.xlsx';
+var sheetName;
 // var loginData = {};
+var productData;
 var tc_username;
 var tc_password;
 var tc_id;
+var backpackName;
+var addCartButtonName;
+var RemoveCartButtonName;
+var cartPageHeaderName;
+var checkoutButtonName;
+var message1;
+var message2;
+// Personal Information
+var yourInformationTitle;
+var firstName;
+var lastName;
+var postalCode;
+// Overview Page
+var overviewPageTitle;
 var tc_result= 'Failed';
 
 module.exports = {
@@ -17,33 +34,45 @@ module.exports = {
     before: function(browser){
     },
     after: function(browser){
-        // excel(excelFilePath).excelWrite(sheetName, tc_id, 'test_result', tc_result);
+        excel(excelFilePath).excelWrite('loginTC', tc_id, 'test_result', tc_result);
+        excel(excelFilePath).excelWrite('buyProductTC', tc_id, 'test_result', tc_result);
+        excel(excelFilePath).excelWrite('personalnfoTC', tc_id, 'test_result', tc_result);
         browser.end();
     },
-    'Prepare Login Data': async function(){
+    'Prepare Testcase Data': async function(){
         tc_id = 'tc1';
+        sheetName = 'loginTC';
+        // login data
         tc_username = await excel(excelFilePath).excelRead(sheetName, tc_id, 'username');
         tc_password = await excel(excelFilePath).excelRead(sheetName, tc_id, 'password');
+
+        // product data
+        sheetName = 'buyProductTC';
+        productData = await excel(excelFilePath).excelReadEntireRow(sheetName, tc_id);
+        backpackName = productData['productName'];
+        addCartButtonName = productData['addToCartButton'];
+        RemoveCartButtonName = productData['removeCartButton'];
+        cartPageHeaderName = productData['cartPageHeader'];
+        checkoutButtonName = productData['checkoutButton'];
+        message1 = productData['successMessage1'];
+        message2 = productData['successMessage2'];
+
+        // Personal Information
+        sheetName = 'personalnfoTC';
+        personalData = await excel(excelFilePath).excelReadEntireRow(sheetName, tc_id);
+        yourInformationTitle = personalData['personalInfoPageTitle'];
+        firstName = personalData['firstName'];
+        lastName = personalData['lastName'];
+        postalCode = personalData['postalCode'];
+
+        // Overview Page
+        overviewPageTitle = productData['overviewPageTitle'];
     },
     'Login Test': function(browser){
         login(browser).navigateToLoginPage();
         login(browser).doLogin(tc_username, tc_password);
     },
     'Add to cart - Test'(browser){
-        const backpackName = 'Sauce Labs Fleece Jacket';
-        const addCartButtonName = 'ADD TO CART';
-        const RemoveCartButtonName = 'REMOVE';
-        const cartPageHeaderName = 'Your Cart';
-        const checkoutButtonName = 'CHECKOUT';
-        const message1 = 'THANK YOU FOR YOUR ORDER';
-        const message2 = 'Your order has been dispatched, and will arrive just as fast as the pony can get there!';
-        // Personal Information
-        const yourInformationTitle = 'Checkout: Your Information';
-        const firstName = 'asddaads';
-        const lastName = 'sdasdad';
-        const postalCode = '847878';
-        // Overview Page
-        const overviewPageTitle = 'Checkout: Overview';
         const buyproduct = browser.page.BuyProductPageObjects();
         buyproduct
             .findAndClickProductByName(backpackName)
@@ -57,6 +86,6 @@ module.exports = {
             .saveScreenshot('screenshots/SuccessfulE2E.jpg')
             .pause(2000)
             .end()
-        test_result = 'Passed'
+        tc_result = 'Passed'
     }
 }

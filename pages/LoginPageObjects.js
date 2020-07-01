@@ -15,7 +15,7 @@ module.exports = {
     commands: [{
         inputUsername(value){
             log.info(`Inputting Username: ${value}`);
-            return user = basepage(this).inputText('@userName', value)
+            return basepage(this).inputText('@userName', value)
         },
         inputPassword(value){
             log.info(`Inputting Password: ${value}`);

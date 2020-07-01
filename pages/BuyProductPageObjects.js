@@ -83,10 +83,10 @@ module.exports = {
         verifySuccess(message1, message2){
             log.info(`Verifying success message:`);
             log.info(`Expected Message 1: ${message1}`);
-            log.info(`Expected Message 1: ${message2}`);
+            log.info(`Expected Message 2: ${message2}`);
             return this
-            .assert.containsText('@successMessage1', message1, 'Order is successful!')
-            .assert.containsText('@successMessage2', message2, 'Order has been dispatched!')
+                .assert.containsText('@successMessage1', message1, 'Order is successful!')
+                .assert.containsText('@successMessage2', message2, 'Order has been dispatched!')
         }
     }]
 }
